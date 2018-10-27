@@ -1,50 +1,66 @@
 <!DOCTYPE html>
 <head>
 
+{{>homestyle}}
+
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+
 </head>
 
 <body>
-<div class = container>
+
+{{>sidebar}}
 
 
-<div class="row" style="margin-top: 20%">
-	<h1 class="text-center" style="font-family: 'Raleway', sans-serif;"> what's the weather like? </h1> 
+<!-- <div class="sidenav" style="color:gray;">
+  <a href="#about">Profile</a>
+  <br>
+  <a href="#services">Vaccines</a>
+  <ul> 
+  		<li> Influenza </li>
+  		<li> Pneumonia </li>
+  		<li> Shingrix</li>
+  		<li> TDAP </li>
+
+  </ul>
+  <a href="#clients">Clients</a>
+  <br>
+  <a href="#contact">Contact</a>
+</div>
+ -->
+
+
+
+<div>
+
+<div style="margin-top: 20px;">
+	<h1  style="font-family: 'Raleway', sans-serif; margin-left: 15%"> Welcome Izuku Midoriya! </h1> 
 </div>
 
-<div class="row">
-<div class = "col-lg-3 col-lg-offset-4">
 
-<form action="/weather" method="POST" style="width: 550px">
-	<input type="text" class="form-control" name="location" placeholder="location" style="width:50%">
+
+	<div>
+	<img src="https://vignette.wikia.nocookie.net/bokunoheroacademia/images/6/66/Izuku_Midoriya_headshot.png/revision/latest?cb=20170928002152" style="height: 200px; width:200px; margin-left:23%; border-radius: 50%; border-style: solid; border-width: 5px;">
 	</div>
-	<div class = "col-lg-4">
-	<button class="btn btn-dark btn-sm" style="margin-top: 5px"> go</button>
+
+
+
+<div style="background-color: #9FD8CB; margin-left: 15%; width: 350px; height: 300px">
+	
+	<h3  style="font-family: 'Raleway', sans-serif; margin-left: 20%;"> <b>User Information:</b></h3> 
+	<div style="margin-left: 10px;">
+	<h4> <b>Name:</b>  Izuku Midoriya </h4>
+	<h4> <b>Age:</b> 15 </h4>
+	<h4> <b>Gender:</b> Male </h4>
+	<h4> <b>Location:</b> Queens </h4>
 	</div>
-</form>
-
-
-<div class = "col-lg-8 col-lg-offset-4">
-
-<form action="/hello" method="POST">
-	<label class="checkbox-inline">
-    <input type="checkbox" id="Check1" value="PHP"> <strong>Rain</strong>
-    </label>
-
-    <label class="checkbox-inline">
-    <input type="checkbox" id="Check2" value="CSS"> <strong>Humidity</strong>
-	</label>
-
-	<label class="checkbox-inline">
-    <input type="checkbox" id="Check3" value="Java"> <strong>This Week</strong>
-    <input type="submit" value="Submit">
-
-
-
-</form>
-
-
 
 </div>
+</div>
+
+
 
 </body>
 

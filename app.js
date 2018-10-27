@@ -4,7 +4,7 @@ const axios = require('axios');
 var request = require('request');
 var app = express();
 var bodyParser = require("body-parser");
-//hbs.registerPartials(__dirname + '/views/partials');
+hbs.registerPartials(__dirname + '/views/partials');
 
 const port = process.env.PORT || 3000;
 
@@ -17,11 +17,27 @@ app.get('/', (req, res) => {
 	res.render('home.hbs');
 });
 
-app.post('/hello', (req,res) => {
+app.get('/vaccines', (req,res) => {
 	console.log(res);
-	res.render('hello.hbs', {
-		response: res
-	});
+	res.render('vaccines.hbs');
+});
+
+app.post('/pharmacies', (req, res) => {
+	var zipcode = JSON.stringify(req.body.location);
+	var encodedZip = encodeURIComponent(req.body.location);
+	
+	var url = `https://data.cityofnewyork.us/resource/inaf-e6a5.json?zip_code=${encodedZip}`;
+	axios.get(url).then((response)=> {
+		console.log(response.data);
+
+	}).catch((e) => {
+		if(e.code === 'ENOTFOUND') {
+
+		}else{
+			console.log(url);
+			
+		}
+});
 });
 
 app.listen(port, () => {
