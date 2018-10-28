@@ -45,7 +45,9 @@ var mongo = require('mongodb');
 //   });
 // });
 
-
+app.get('/', (req, res) => {
+	res.render('home.hbs');
+});
 
 app.get('/home', (req, res) => {
 	res.render('home.hbs');
