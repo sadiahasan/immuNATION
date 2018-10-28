@@ -5,8 +5,12 @@ var request = require('request');
 var app = express();
 var bodyParser = require("body-parser");
 hbs.registerPartials(__dirname + '/views/partials');
-var mongo = require('mongodb');
+
 const port = process.env.PORT || 3000;
+
+var{mongoose} = require('./db/mongoose');
+var {Vaccinations} = require('./models/vaccinations');
+var {Users} = require('./models/users');
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.set('view engine', 'hbs');
@@ -46,7 +50,6 @@ MongoClient.connect(url, function(err, db) {
 
 
 app.get('/', (req, res) => {
-
 	res.render('home.hbs');
 });
 
@@ -55,33 +58,9 @@ app.get('/profile', (req, res) => {
 });
 
 app.get('/vaccines', (req,res) => {
-	console.log(res);
-	res.render('vaccines1.hbs');
-
-	
-
-	MongoClient.connect(url, function(err, db) {
-  		if (err) throw err;
-  		var age = 76;
-		var dbo = db.db("immuNATION");
-		var myDocument = dbo.Vaccinations.findOne();
-  		
-  		if(myDocument) {
-		var myName = myDocument.name;
-
-		console.log(tojson(myName));
-	}
-
-
-  		
-});
-	
-
+	res.render('vaccines.hbs');
 
 });
-
-
-
 
 
 
@@ -116,7 +95,6 @@ app.get('/vaccines', (req,res) => {
 // });
 
 
-
 app.post('/vaccines', (req, res) => {
 	var zipcode = JSON.stringify(req.body.location);
 	var encodedZip = encodeURIComponent(req.body.location);
@@ -139,6 +117,6 @@ app.post('/vaccines', (req, res) => {
 });
 });
 
-app.listen(port, () => {
-	console.log(`Server is up on port ${port}`);
-	}); 
+app.listen(process.env.PORT || 3000, function(){
+  console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+});
