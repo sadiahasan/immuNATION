@@ -8,44 +8,42 @@ hbs.registerPartials(__dirname + '/views/partials');
 
 const port = process.env.PORT || 3000;
 
-var{mongoose} = require('./db/mongoose');
-var {Vaccinations} = require('./models/vaccinations');
-var {Users} = require('./models/users');
+
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.set('view engine', 'hbs');
 var mongo = require('mongodb');
 
-var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://localhost:27017/immuNATION";
+// var MongoClient = require('mongodb').MongoClient;
+// var url = "mongodb://localhost:27017/immuNATION";
 
-MongoClient.connect(url, function(err, db) {
-  if (err) throw err;
-  console.log("Database created!");
-  db.close();
-});
+// MongoClient.connect(url, function(err, db) {
+//   if (err) throw err;
+//   console.log("Database created!");
+//   db.close();
+// });
 
-var url = "mongodb://localhost:27017/";
+// var url = "mongodb://localhost:27017/";
 
-MongoClient.connect(url, function(err, db) {
-  if (err) throw err;
-  var dbo = db.db("immuNATION");
-  dbo.createCollection("Users", function(err, res) {
-    if (err) throw err;
-    console.log("Collection created!");
-    db.close();
-  });
-});
+// MongoClient.connect(url, function(err, db) {
+//   if (err) throw err;
+//   var dbo = db.db("immuNATION");
+//   dbo.createCollection("Users", function(err, res) {
+//     if (err) throw err;
+//     console.log("Collection created!");
+//     db.close();
+//   });
+// });
 
-MongoClient.connect(url, function(err, db) {
-  if (err) throw err;
-  var dbo = db.db("immuNATION");
-  dbo.createCollection("Vaccinations", function(err, res) {
-    if (err) throw err;
-    console.log("Collection created!");
-    db.close();
-  });
-});
+// MongoClient.connect(url, function(err, db) {
+//   if (err) throw err;
+//   var dbo = db.db("immuNATION");
+//   dbo.createCollection("Vaccinations", function(err, res) {
+//     if (err) throw err;
+//     console.log("Collection created!");
+//     db.close();
+//   });
+// });
 
 
 
