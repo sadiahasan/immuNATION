@@ -6,7 +6,7 @@ var app = express();
 var bodyParser = require("body-parser");
 hbs.registerPartials(__dirname + '/views/partials');
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8000;
 
 
 
@@ -47,7 +47,7 @@ var mongo = require('mongodb');
 
 
 
-app.get('/', (req, res) => {
+app.get('/home', (req, res) => {
 	res.render('home.hbs');
 });
 
@@ -60,47 +60,20 @@ app.get('/vaccines', (req,res) => {
 
 });
 
+app.get('/search', (req,res) => {
+	res.render('search.hbs');
+
+});
 
 
-
-// app.get('/x', (req,res) =>{
-
-// MongoClient.connect(url, function(err, db) {
-// 	res.render('home.hbs');
-//   if (err) throw err;
-//   var dbo = db.db("immuNATION");
-
-//   var name = db.findOne( {profile: Meteor.userId()}).name;
-//   console.log("Asdsadsadsad"+name);
- 
-//   dbo.collection("Users")
-//   .find({}, { 
-//   	projection: {
-//   	 _id: 0,
-//   	 name: 1,
-//   	 age: 1 }})
-//   .toArray(function(err, result) {
-    
-//     if (err) throw err;
-//     console.log(result.name);
-//     db.close();
-
-//   });
-
-// });
-
-
-// });
-
-
-app.post('/vaccines', (req, res) => {
+app.post('/search', (req, res) => {
 	var zipcode = JSON.stringify(req.body.location);
 	var encodedZip = encodeURIComponent(req.body.location);
 	
 	var url = `https://data.cityofnewyork.us/resource/inaf-e6a5.json?zip_code=${encodedZip}`;
 	axios.get(url).then((response)=> {
 		console.log(response.data[0].address);
-		res.render('vaccines.hbs', {
+		res.render('search.hbs', {
 			stores: response.data
 
 		})
@@ -115,6 +88,6 @@ app.post('/vaccines', (req, res) => {
 });
 });
 
-app.listen(process.env.PORT || 3000, function(){
+app.listen(process.env.PORT || 8000, function(){
   console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
 });
